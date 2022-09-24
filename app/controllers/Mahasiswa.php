@@ -1,6 +1,7 @@
 <?php
 
-class Mahasiswa extends Controller{
+class Mahasiswa extends Controller
+{
     public function index()
     {
         $data['judul'] = 'Daftar Mahasiswa';
@@ -21,11 +22,13 @@ class Mahasiswa extends Controller{
 
     public function tambah()
     {
-        if( $this->model('Mahasiswa_model')->tambahDataMahasiswa($_POST) > 0 ) {
-            header('Location: ' . BASEURL . '/mahasiswa');
+        if ($this->model('Mahasiswa_model')->tambahDataMahasiswa($_POST) > 0) {
+            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            header('Location: ' . BASEURL . 'mahasiswa');
             exit;
         } else {
-            header('Location: ' . BASEURL . '/mahasiswa');
+            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            header('Location: ' . BASEURL . 'mahasiswa');
             exit;
         }
     }
